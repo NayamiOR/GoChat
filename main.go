@@ -6,12 +6,14 @@ import (
 	"log"
 	"net/http"
 	"os"
+
 	"github.com/gorilla/websocket"
 )
 
 var clients []*websocket.Conn
 
 func server() {
+
 	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
 		upgrader := websocket.Upgrader{CheckOrigin: func(r *http.Request) bool { return true }}
 		conn, _ := upgrader.Upgrade(w, r, nil)
